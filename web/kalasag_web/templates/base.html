@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:600|Lato|Oswald:400,700,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
   <title>Kalasag - To Protect And Serve Your Login</title>
@@ -16,18 +16,18 @@
   <div class="content">
   <nav class="navbar navbar-default" role="navigation">
     <div class="container">
-      <a href="/"><img src="{{ url_for('static', filename='img/kalasag_logo_tiny.png')}}"></a><a href="/"><h1 class="kalasag-title">Kalasag</h1></a>
+      <a href="/"><img src="{{ url_for('static', filename='img/kalasag_small.png')}}"></a><a class="k-title-link" href="/"><h1 class="kalasag-title">Kalasag</h1></a>
     </div>
   </nav>
   {% block content %}
   {% endblock %}
   </div>
   
-  <div class="footer">
+  <!-- <div class="footer">
     <div class="container">
       <p class="text-muted">© Kalasag 2014</p>
     </div>
-  </div>
+  </div> -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script type="text/javascript">

@@ -23,7 +23,7 @@
             </label>
           </p>
           <p>These are important! Better write them down. You can always log back in to Kalasag if you forget. On to the next step.</p>
-          <a href="{{ url_for('example.index') }}"><button class="btn-left btn btn-default btn-primary">Add Some Users!</button></a>
+          <a href="{{ url_for('example.index') }}"><button class="btn-left btn btn-default btn-primary">Add a User</button></a>
           </form>
         </div>
         <br>
@@ -35,10 +35,10 @@
       <div class="row">
         <div class="main-col col-xs-12">
           <div class="attengrab">
-            <img src="{{ url_for('static', filename='img/kalasag_logo_md.png')}}">
+            <img src="{{ url_for('static', filename='img/kalasag_logo.png')}}">
             <h2>To protect and serve your login</h2>
             <p>Kalasag is two-factor SMS authentication for your apps made easy. <br> Just sign up, plug your app into the API and you're good to go!</p>
-            <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Get Started!</button></a>
+            <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Get Started</button></a>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      <div class="row benefit-row">
+      <div class="row benefit-row-2">
         <h3>Setup is literally as easy as 1-2-3</h3>
         <div class="benefit col-xs-12 col-sm-4 ">
         <div class="img-cont">
@@ -94,7 +94,11 @@
       </div>
 
       <div class="row cta-row">
-        <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Protect Me!</button></a>      
+        <p>Kalasag is two-factor SMS authentication for your apps made easy. <br> Just sign up, plug your app into the API and you're good to go!</p>
+        <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn-down btn btn-primary btn-lg">Protect Me</button></a>  
+        <div class="container">
+        <p class="copyright">© Kalasag 2014</p>    
+        </div>
       </div>
     </div>
     {% endif %}

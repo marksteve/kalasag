@@ -4,9 +4,14 @@
 }
 
 .kalasag-title {
-  font-family: "Hallo-black";
+  font-family: "Source Sans Pro";
   font-weight: normal;
   text-transform: uppercase;
+  font-size: 26px;
+}
+
+.k-title-link {
+  margin-left: 8px;
 }
 
 .main-col {
@@ -44,8 +49,7 @@
 }
 
 .navbar img {
-  width: 43px;
-  margin-top: -13px;
+  margin-top: -8px;
 }
 
 .navbar a {
@@ -58,10 +62,17 @@
   color: inherit;
 }
 
+.copyright {
+  font-size: 16px !important;
+  text-align: left;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+}
+
 .main-col h2 {
-  margin-bottom: 25px;
-  font-family: "Hallo-black";
-  font-weight: normal;
+  margin-bottom: 30px;
+  font-family: "Oswald";
+  font-weight: 400;
   text-transform: uppercase;
   color: white;
 }
@@ -71,20 +82,31 @@
   text-align: center;
 }
 
-.attengrab p {
+.btn-down {
+  margin-bottom: 130px !important;
+}
+
+.attengrab p,
+.cta-row p {
   color: white;
-  font-family: "Open Sans";
-  font-size: 20px; 
+  font-family: "Lato";
+  font-weight: 400;
+  font-size: 18px; 
+}
+
+.cta-row p {
+  margin-top: 100px;
+  margin-bottom: 0;
 }
 
 .k-btn {
   margin-top: 50px;
   margin-bottom: 75px;
-  font-family: "Hallo-black";
-  font-weight: normal;
+  font-family: "Oswald";
+  font-weight: 400;
   text-transform: uppercase;
-  font-size: 30px; 
-  padding: 10px 35px;
+  font-size: 22px; 
+  padding: 18px 44px;
 }
 
 .signup,
@@ -142,9 +164,10 @@ label {
 
 .super-container h3 {
   text-align: center;
-  font-family: "Hallo-black";
+  font-family: "Oswald";
+  font-weight: 300;
   text-transform: uppercase;
-  color: #2c3e50;
+  color: #272829;
 }
 
 .super-container h4 {
@@ -186,8 +209,13 @@ label {
   margin-top: 50px;
 }
 
+.benefit-row-2 {
+  padding: 50px 0;
+  background-color: #f8f8f8;
+}
+
 .cta-row {
-  margin-top: 100px;
-  background-color: rgba(52, 73, 94,1.0);
   text-align: center;
+  background-image: url("../img/kalasag_stock.jpg");
+  background-position: center center;
 }
