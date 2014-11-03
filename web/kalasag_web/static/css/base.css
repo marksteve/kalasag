@@ -35,8 +35,17 @@
   display: inline-block;
 }
 
+.navbar {
+  padding: 10px 0;
+}
+
+.navbar h1 {
+  margin: 0;
+}
+
 .navbar img {
-  margin-top: -10px;
+  width: 43px;
+  margin-top: -13px;
 }
 
 .navbar a {
@@ -50,7 +59,7 @@
 }
 
 .main-col h2 {
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   font-family: "Hallo-black";
   font-weight: normal;
   text-transform: uppercase;
@@ -70,7 +79,7 @@
 
 .k-btn {
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 75px;
   font-family: "Hallo-black";
   font-weight: normal;
   text-transform: uppercase;
