@@ -7,7 +7,7 @@ web:
   volumes:
     - web:/usr/src/app
   ports:
-    - 5000:5000
+    - 5000:9000
   links:
     - redis:redis
   environment:
