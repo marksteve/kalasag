@@ -15,16 +15,13 @@
 }
 
 .footer {
-  position: absolute;
-  margin-top: 50px;
-  bottom: 0;
   width: 100%;
-  background-color: #f8f8f8;
+  background-color: rgba(52, 73, 94,1.0);
   font-family: "Open Sans";
 }
 
 .text-muted {
-  color: #777;
+  color: #ecf0f1;
   margin: 20px 0;
 }
 
@@ -132,4 +129,56 @@ label {
 
 .winnerisyou {
   max-width: 100%;
+}
+
+.super-container h3 {
+  text-align: center;
+  font-family: "Hallo-black";
+  text-transform: uppercase;
+  color: #2c3e50;
+}
+
+.super-container h4 {
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.benefit {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.benefit img {
+  display: block;
+  max-width: 100%;
+  max-height: 128px;
+  margin: 0 auto;
+}
+
+.benefit p {
+  max-width: 250px;
+  margin: 0 auto;
+  font-size: 16px;
+  font-family: "Open Sans";
+}
+
+.content {
+  min-height: 94vh; 
+}
+
+.img-cont {
+  min-height: 128px;
+  margin-bottom: 15px;
+}
+
+.benefit-row {
+  margin-top: 50px;
+}
+
+.cta-row {
+  margin-top: 100px;
+  background-color: rgba(52, 73, 94,1.0);
+  text-align: center;
 }

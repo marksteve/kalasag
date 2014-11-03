@@ -9,7 +9,7 @@
           <form action="" role="form" method="post">
           <div class="form-group">
           <label for="code">Short Code</label>
-          <input type="text" id="code" class="form-control" name="code">
+          <input class="numeric form-control" type="text" id="code" class="form-control" name="code">
           </div>
             {% for message in get_flashed_messages() %}
             <p class="login-msg">{{ message }}</p>

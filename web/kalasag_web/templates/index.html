@@ -31,26 +31,70 @@
     </div>
     </div>
     {% else %}
-    <div class="container-fluid">
+    <div class="super-container container-fluid">
       <div class="row">
         <div class="main-col col-xs-12">
           <div class="attengrab">
             <img src="{{ url_for('static', filename='img/kalasag_logo_md.png')}}">
             <h2>To protect and serve your login</h2>
-            <p>Kalasag is two-factor authentication for your apps made easy. <br>Just sign up, plug your app into the API and you're good to go!</p>
+            <p>Kalasag is two-factor SMS authentication for your apps made easy. <br> Just sign up, plug your app into the API and you're good to go!</p>
             <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Get Started!</button></a>
           </div>
         </div>
-        <!-- <div class="col-xs-12">
-        <input type="text" placeholder="username">
-        <input type="password" placeholder="matrix">
-        <p>Easier than 1-2-3</p>
-        <p>
-          1. Register your app.
-          2. Add a user using the credentials on the next page.  
-          3. Surprise! There is no third step. Didn't we tell you it would be easier than 1-2-3?
-        </p>
-        </div> -->
+      </div>
+
+      <div class="row benefit-row">
+        <h3>How are my users protected?</h3>
+        <div class="benefit col-xs-12 col-sm-4 ">
+        <div class="img-cont">
+          <img src="{{ url_for('static', filename='img/benefit4.png')}}">
+        </div>
+        <h4>Login</h4>
+        <p>Your user logs into your app. How do you know it's not a sketchy hacker?</p>
+        </div>
+        <div class="benefit col-xs-12 col-sm-4 ">
+        <div class="img-cont">
+          <img src="{{ url_for('static', filename='img/benefit5.png')}}">
+        </div>
+        <h4>SMS Verification</h4>
+        <p>Your user receives an SMS with a shortcode.</p>
+        </div>
+        <div class="benefit col-xs-12 col-sm-4 ">
+        <div class="img-cont">
+          <img src="{{ url_for('static', filename='img/benefit6.png')}}">
+        </div>
+        <h4>Success</h4>
+        <p> A form will be shown where the shortcode can be inputted. If it's correct, access to your app continues as normal.</p>
+        </div>
+      </div>
+
+      <div class="row benefit-row">
+        <h3>Setup is literally as easy as 1-2-3</h3>
+        <div class="benefit col-xs-12 col-sm-4 ">
+        <div class="img-cont">
+          <img src="{{ url_for('static', filename='img/benefit1.png')}}">
+        </div>
+        <h4>Register</h4>
+        <p>Protecting your app with Kalasag is as easy as writing your app's name in a box.</p>
+        </div>
+        <div class="benefit col-xs-12 col-sm-4 ">
+        <div class="img-cont">
+          <img src="{{ url_for('static', filename='img/benefit2.png')}}">
+        </div>
+        <h4>Add users </h4>
+        <p>Once registered, you get a client ID and a secret key. Put in your user's phone numbers and voilà!</p>
+        </div>
+        <div class="benefit col-xs-12 col-sm-4 ">
+        <div class="img-cont">
+          <img src="{{ url_for('static', filename='img/benefit3.png')}}">
+        </div>
+        <h4>Direct to Kalasag</h4>
+        <p>Just add a sprinkle of code after your login form and let Kalasag do the rest.</p>
+        </div>
+      </div>
+
+      <div class="row cta-row">
+        <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Protect Me!</button></a>      
       </div>
     </div>
     {% endif %}

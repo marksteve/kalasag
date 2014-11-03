@@ -66,8 +66,8 @@ class OTPRequest(Resource):
     )
 
     auth = OtpAuth(args.secret_key)
-    code = auth.totp()
-
+    code = auth.totp(period=300)
+    current_app.logger.debug("Generated code: " + str(code))
     res = requests.post(
       CHIKKA_SMS_ENDPOINT,
       data=dict(
@@ -113,8 +113,8 @@ class OTPValidate(Resource):
       abort(401)
 
     auth = OtpAuth(args.secret_key)
-    current_app.logger.debug("Given code: " + args.code)
+    current_app.logger.debug("User put in code: " + str(args.code))
     return dict(
-      valid=auth.valid_totp(args.code),
+      valid=auth.valid_totp(args.code, period=300),
     )
 
