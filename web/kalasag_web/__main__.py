@@ -3,4 +3,4 @@ from kalasag_web.app import create_app
 
 if __name__ == "__main__":
   app = create_app(DEBUG=True)
-  app.run(host="0.0.0.0", threaded=True)
+  app.run(host="0.0.0.0", port=9000, threaded=True)
