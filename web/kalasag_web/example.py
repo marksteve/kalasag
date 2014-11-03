@@ -100,6 +100,5 @@ def validate():
 
 @blueprint.route("/reset", methods=["GET"])
 def reset():
-  db.flushdb();
-  current_app.logger.debug("Redis was flushed")
+  session.clear()
   return redirect(url_for('views.index'))
