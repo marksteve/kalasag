@@ -219,3 +219,14 @@ label {
   background-image: url("../img/kalasag_stock.jpg");
   background-position: center center;
 }
+
+.missing {
+  display: none;
+  font-family: "Open Sans";
+  font-size: 12px;
+  color: #c0392b;
+}
+
+.hf-div {
+  margin-left: 6.5%;
+}

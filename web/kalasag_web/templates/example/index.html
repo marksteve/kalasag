@@ -9,7 +9,7 @@
         {% if not user %}
         <img class="steps-img" src="{{ url_for('static', filename='img/step3.png') }}">
           <h1>Step 3: Add a User</h1>
-          <form role="form" action="{{ url_for('.add_user') }}" method="post">
+          <form role="form" name="kform" action="{{ url_for('.add_user') }}" method="post" onsubmit="return validateForm()">
           <p>
             <label>
               Client ID
@@ -49,6 +49,7 @@
               <input class="form-control numeric" size="64" type="text" name="user_number">
             </label>
           </p>
+          <p class="missing">Please fill in all the fields. It's a demo, man. Help me out.</p>
           <p>
             <button class="btn btn-default btn-primary" type="submit">Add User</button>
           </p>
@@ -82,4 +83,20 @@
       </div>
     </div>
     </div>
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+ function validateForm() {
+    var x = document.forms["kform"]["user_id"].value;
+    var y = document.forms["kform"]["user_name"].value;
+    var z = document.forms["kform"]["user_number"].value;
+    if ((x == null || x == "") ||
+        (y == null || y == "") ||
+        (z == null || z == "")) 
+    {
+        $('.missing').show();
+        return false;
+    }
+} 
+</script>
 {% endblock %}
