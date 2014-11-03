@@ -1,26 +1,57 @@
-<!doctype html>
-<html>
-  <head></head>
-  <body>
-    <h1>Kalasag</h1>
+{% extends "base.html" %}
+    {% block content %}
     {% if app %}
-    <h2>{{ app.name }}</h2>
-    <p>
-      <label>
-        Client ID
-        <input size="64" type="text" name="client_id" value="{{ app.client_id }}" readonly>
-      </label>
-    </p>
-    <p>
-      <label>
-        Secret Key
-        <input size="64" type="text" name="secret_key" value="{{ app.secret_key }}" readonly>
-      </label>
-    </p>
+    <div class="signup">
+    <img class="steps-img" src="{{ url_for('static', filename='img/step2.png') }}">
+    <h1>Step 2: Get your creds!</h1>
+    <div class="container">
+      <div class="row row-centered">
+
+        <div class="signup-form col-centered col-xs-12">
+        <form role="form" action="{{ url_for('example.index') }}" method="post">
+        <h2>{{ app.name }}</h2>
+          <p>
+            <label>
+              Client ID
+              <input size="64" class="pokable form-control"type="text" name="client_id" value="{{ app.client_id }}" onClick="this.select();" readonly>
+            </label>
+          </p>
+          <p>
+            <label>
+              Secret Key
+              <input size="64" class="pokable form-control" type="text" name="secret_key" value="{{ app.secret_key }}" onClick="this.select();" readonly>
+            </label>
+          </p>
+          <p>These are important! Better write them down. You can always log back in to Kalasag if you forget. On to the next step.</p>
+          <a href="{{ url_for('example.index') }}"><button class="btn-left btn btn-default btn-primary">Add Some Users!</button></a>
+          </form>
+        </div>
+        <br>
+      </div>
+    </div>
+    </div>
     {% else %}
-    <p>
-      <a href="{{ url_for('.signup') }}">Signup</a>
-    </p>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="main-col col-xs-12">
+          <div class="attengrab">
+            <img src="{{ url_for('static', filename='img/kalasag_logo_md.png')}}">
+            <h2>To protect and serve your login</h2>
+            <p>Kalasag is two-factor authentication for your apps made easy. <br>Just sign up, plug your app into the API and you're good to go!</p>
+            <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Get Started!</button></a>
+          </div>
+        </div>
+        <!-- <div class="col-xs-12">
+        <input type="text" placeholder="username">
+        <input type="password" placeholder="matrix">
+        <p>Easier than 1-2-3</p>
+        <p>
+          1. Register your app.
+          2. Add a user using the credentials on the next page.  
+          3. Surprise! There is no third step. Didn't we tell you it would be easier than 1-2-3?
+        </p>
+        </div> -->
+      </div>
+    </div>
     {% endif %}
-  </body>
-</html>
+    {% endblock %}

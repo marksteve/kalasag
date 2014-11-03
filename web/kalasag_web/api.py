@@ -7,6 +7,8 @@ from simpleflake import simpleflake
 
 from . import db
 
+from flask import current_app
+
 CHIKKA_SMS_ENDPOINT = "https://post.chikka.com/smsapi/request"
 
 
@@ -86,6 +88,8 @@ Code: {}
     )
 
     if res.status_code != requests.codes.ok:
+      current_app.logger.debug(current_app.config["CHIKKA_SHORTCODE"])
+      current_app.logger.debug(res.content)
       abort(500)
 
     return ""
@@ -109,6 +113,7 @@ class OTPValidate(Resource):
       abort(401)
 
     auth = OtpAuth(args.secret_key)
+    current_app.logger.debug("Given code: " + args.code)
     return dict(
       valid=auth.valid_totp(args.code),
     )

@@ -4,12 +4,15 @@ from flask import (abort, Blueprint, flash, redirect, render_template, request,
 
 from . import db
 from .util import rand_str
+from flask import current_app
 
-blueprint = Blueprint("example", __name__)
+blueprint = Blueprint("example", __name__, static_folder='static')
 
 
-@blueprint.route("/")
+@blueprint.route("/", methods=["GET","POST"])
 def index():
+  if request.method == "POST":
+    current_app.logger.debug(request.form)
   user = None
 
   client_id = session.get("example_client_id")
@@ -73,6 +76,7 @@ def login():
 @blueprint.route("/validate", methods=["GET", "POST"])
 def validate():
   if request.method == "POST":
+    current_app.logger.debug("SENDING: " + request.form["code"])
     res = requests.post(
       url_for(
         "api_otp_validate",
@@ -88,8 +92,13 @@ def validate():
     if res.status_code != requests.codes.ok:
       abort(500)
     if res.json()["valid"]:
-      flash("Login success!")
+      return render_template("example/success.html")
     else:
+      current_app.logger.debug(res.json())
       flash("Login failed")
   return render_template("example/validate.html")
 
+@blueprint.route("/reset", methods=["GET"])
+def reset():
+  db.flushdb();
+  return "Reset"

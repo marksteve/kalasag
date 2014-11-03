@@ -13,8 +13,8 @@ def create_app(**config):
   app.config.update(**config)
   app.config.update(
     SECRET_KEY=os.environ["SECRET_KEY"],
-    CHIKKA_CLIENT_ID=os.environ["CHIKKA_CLIENT_ID"],
-    CHIKKA_SECRET_KEY=os.environ["CHIKKA_SECRET_KEY"],
+    CHIKKA_CLIENT_ID= os.environ["CHIKKA_CLIENT_ID"],
+    CHIKKA_SECRET_KEY= os.environ["CHIKKA_SECRET_KEY"],
     CHIKKA_SHORTCODE=os.environ["CHIKKA_SHORTCODE"],
   )
 

@@ -4,7 +4,7 @@ from flask import (abort, Blueprint, redirect, render_template, request,
 from . import db
 from .util import rand_str
 
-blueprint = Blueprint("views", __name__)
+blueprint = Blueprint("views", __name__, static_folder='static')
 
 
 @blueprint.route("/")

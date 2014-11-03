@@ -1,22 +1,23 @@
-<!doctype html>
-<html>
-  <head></head>
-  <body>
-    <h1>Example</h1>
-    <h2>Validate</h2>
-    <form action="" method="post">
-    <p>
-      <label>
-        Code
-        <input type="text" name="code">
-      </label>
-    </p>
-    <p>
-      <button type="submit">Validate</button>
-    </p>
-    </form>
-    {% for message in get_flashed_messages() %}
-    <p>{{ message }}</p>
-    {% endfor %}
-  </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="signup">
+<img class="steps-img" src="{{ url_for('static', filename='img/step5.png') }}">
+<h1>Check your phone!</h1>
+  <div class="container">
+      <div class="row row-centered">
+        <div class="signup-form col-centered col-xs-12">
+          <form action="" role="form" method="post">
+          <div class="form-group">
+          <label for="code">Short Code</label>
+          <input type="text" id="code" class="form-control" name="code">
+          </div>
+            {% for message in get_flashed_messages() %}
+            <p class="login-msg">{{ message }}</p>
+            {% endfor %}
+            <button type="submit" class="btn btn-default btn-primary">Validate</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
