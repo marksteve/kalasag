@@ -1,11 +1,6 @@
-@font-face {
-  font-family: "Hallo-black";
-  src: url("../font/Hallo sans black.otf");
-}
-
 .kalasag-title {
   font-family: "Source Sans Pro";
-  font-weight: normal;
+  font-weight: 600;
   text-transform: uppercase;
   font-size: 26px;
 }
