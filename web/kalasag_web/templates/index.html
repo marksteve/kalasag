@@ -5,6 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
+    <img class="steps-img" src="{{ url_for('static', filename='img/step2.png') }}">
       <h2>App Name: {{ app.name }}</h2>
       <p>
         <label>
@@ -24,7 +25,7 @@
       <p>Follow the demo to learn how to integrate Kalasag in your apps.</p>
       <p>
         <a href="{{ url_for('example.index') }}" class="btn btn-primary">
-          Try Demo
+          Try the Demo
         </a>
       </p>
     </div>

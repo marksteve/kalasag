@@ -30,6 +30,29 @@ def index():
     user=user,
   )
 
+@blueprint.route("/tryOTP", methods=["GET", "POST"])
+def tryOTP():
+  if "app_client_id" in session:
+    app = db.hgetall("apps:" + session["app_client_id"])
+  else:
+    return redirect(url_for("views.index"))
+
+  user_id = session.get("example_user_id")
+
+  if app and user_id:
+    user = db.hgetall("apps:{}:users:{}".format(
+      app["client_id"],
+      user_id,
+    ))
+  else:
+    user = None
+
+  return render_template(
+    "example/try_otp.html",
+    app=app,
+    user=user,
+  )
+
 
 @blueprint.route("/add_user", methods=["POST"])
 def add_user():
@@ -55,10 +78,10 @@ def add_user():
     if res.status_code != requests.codes.ok:
       abort(500)
     session["example_user_id"] = request.form["user_id"]
-  return redirect(url_for(".index"))
+  return redirect(url_for("example.tryOTP"))
 
 
-@blueprint.route("/login", methods=["POST"])
+@blueprint.route("/login", methods=["GET","POST"])
 def login():
   if "app_client_id" in session:
     app = db.hgetall("apps:" + session["app_client_id"])

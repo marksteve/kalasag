@@ -28,6 +28,9 @@ def signup():
     return redirect(url_for(".index"))
   return render_template("signup.html")
 
+@blueprint.route("/docs", methods=["GET"])
+def docs():
+  return render_template('documentation.html')
 
 @blueprint.route("/logout", methods=["GET"])
 def logout():

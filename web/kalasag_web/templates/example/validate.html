@@ -7,8 +7,9 @@
   <h1>Check your phone!</h1>
   <hr>
   <div class="col col-md-4 col-md-offset-2">
-    <p>The user will be sent the OTP which you'll use to verify the login:</p>
+    <p>The user will receive an SMS containing a short one time password which you can verify using a POST request to the API.</p>
     <pre><code>curl -X POST \
+  -d 'code=ONE_TIME_PASSWORD' \
   {{ url_for('api_otp_validate', client_id=app.client_id, user_id='USER_ID', secret_key=app.secret_key, _external=True) }}
   </code></pre>
     <p>You can use the form to try it out.</p>

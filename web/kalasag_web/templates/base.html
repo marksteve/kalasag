@@ -15,9 +15,17 @@
   
   <div class="content">
   <nav class="navbar navbar-default" role="navigation">
-    <div class="hf-div">
-      <a href="/"><img src="{{ url_for('static', filename='img/kalasag_small.png')}}"></a><a class="k-title-link" href="/"><h1 class="kalasag-title">Kalasag</h1></a>
+    <div class="container container-nav">
+      <div class="row">
+        <div class="hf-div col-xs-6">
+          <a href="/"><img src="{{ url_for('static', filename='img/kalasag_small.png')}}"></a><a class="k-title-link" href="{{ url_for('views.index')}}"><h1 class="kalasag-title">Kalasag</h1></a>
+        </div>
+        <div class="col-xs-6 col-right">
+          <a class="api-doc" href="{{ url_for('views.docs')}}">API Documentation</a>
+        </div>
+      </div>
     </div>
+    
   </nav>
   {% block content %}
   {% endblock %}

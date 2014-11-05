@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="signup">
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12">
+      <img class="steps-img" src="{{ url_for('static', filename='img/documentation.png')}}">
+      <h1>Our Awesomely Simple Documentation</h1>
+      <br>
+      <img class="doc-img" src="{{ url_for('static', filename='img/benefit1.png')}}">
+      <h3>Registering Your App</h3>
+
+      <p>Just <a href="{{ url_for('views.signup')}}">signup</a> and write down your app name!</p>
+
+      <br>
+      <img class="doc-img" src="{{ url_for('static', filename='img/benefit2.png')}}">
+      <h3>Adding Users</h3> 
+
+      <p>Once a user fills in your app's registration form, make sure to get his cellphone number. Then just send Kalasag a PUT request from your server! Here's a curl example. </p>
+      <p>Make sure to fill in the following fields:</p>
+      <ul>
+        <li>YOUR_CLIENT_ID - your app's id given by Kalasag</li>
+        <li>YOUR_SECRET_KEY - your secret ley given by Kalasag</li>
+        <li>USER_ID - a unique ID for your user. Can be any mix of numbers or letters</li>
+        <li>USER_NAME - your user's name. ex. Beato Bongco</li>
+        <li>USER_NUMBER - your user's phone number. Make sure it starts with 63! ex. 63926XXXXXXX</li>
+      </ul>
+
+      <pre><code>curl -X PUT \
+-d 'name=USER_NAME&number=USER_NUMBER' \
+{{ url_for('api_user', client_id="YOUR_CLIENT_ID", user_id='USER_ID', secret_key="YOUR_SECRET_KEY", _external=True) }}</code></pre>
+      <br>
+      <p>Sample terminal output: </p>
+      <pre><code>{
+    "id": "777", 
+    "name": "BeatoBongco", 
+    "number": "63926XXXXXXX"
+}
+</code></pre>
+      <br>
+      <img class="doc-img" src="{{ url_for('static', filename='img/benefit5.png')}}">
+      <h3>Send a One Time Password</h3> 
+
+      <p>After doing your own login magic, send a one time password to your users through the API. You can do this with a simple POST request.</p>
+      <p>Make sure to fill in the following fields:</p>
+      <ul>
+        <li>YOUR_CLIENT_ID - your app's id given by Kalasag</li>
+        <li>YOUR_SECRET_KEY - your secret ley given by Kalasag</li>
+        <li>USER_ID - a unique ID for your user. Can be any mix of numbers or letters</li>
+      </ul>
+      <pre><code>curl -X POST \
+{{ url_for('api_otp_request', client_id="YOUR_CLIENT_ID", user_id='USER_ID', secret_key="YOUR_SECRET_KEY", _external=True) }}</code></pre>
+      <br>
+      <p>Sample SMS output:</p>
+      <pre><code>Code: 424242</code></pre>
+      <br>
+      <img class="doc-img" src="{{ url_for('static', filename='img/benefit6.png')}}">
+      <h3>Verify the One Time Password</h3>
+
+      <p>Once the user receives the SMS with the one time password, you can verify it with Kalasag with another simple POST request.</p>
+
+      <p>Make sure to fill in the following fields:</p>
+      <ul>
+        <li>ONE_TIME_PASSWORD - the code you received on your phone via SMS</li>
+        <li>YOUR_CLIENT_ID - your app's id given by Kalasag</li>
+        <li>YOUR_SECRET_KEY - your secret ley given by Kalasag</li>
+        <li>USER_ID - a unique ID for your user. Can be any mix of numbers or letters</li>
+      </ul>
+
+      <pre><code>curl -X POST \
+  -d 'code=ONE_TIME_PASSWORD' \
+{{ url_for('api_otp_validate', client_id="YOUR_CLIENT_ID", user_id='USER_ID', secret_key="YOUR_SECRET_KEY", _external=True) }}</code></pre>
+      <br>
+      <p>Sample terminal output:</p>
+      <pre><code>{
+    "valid": true
+}</code></pre>
+
+    <div class="cta-docs"><a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Simple Enough? Let's Get Started!</button></a></div>
+  </div>
+  </div>
+</div>
+</div>
+{% endblock %}

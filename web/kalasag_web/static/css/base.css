@@ -2,11 +2,49 @@ body {
   font-family: "Open Sans";
 }
 
+.doc-img {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+.cta-docs {
+  text-align: center;
+}
+
+.container-nav {
+  margin: 0;
+  width: 100%
+}
+
+.col-right {
+  text-align: right;
+  padding-right: 6.5%;
+  
+}
+
+.api-doc {
+  font-family: "Source Sans Pro";
+  font-size: 18px;
+  display: block;
+  line-height: 26px;
+}
+
+.api-doc:hover {
+  color: #c0392b;
+}
+
+.p-impt {
+  font-weight: 700;
+}
+
 .kalasag-title {
   font-family: "Source Sans Pro";
   font-weight: 600;
   text-transform: uppercase;
   font-size: 26px;
+  line-height: 26px;
+  display: block;
+  color: 
 }
 
 .k-title-link {
@@ -213,5 +251,5 @@ body {
 }
 
 .hf-div {
-  margin-left: 6.5%;
+  padding-left: 6.5%;
 }
