@@ -3,15 +3,13 @@
 <div class="signup">
 <h1>Login Successful! Congratulations!</h1>
   <div class="container">
-      <div class="row row-centered">
-        <div class="signup-form col-centered col-xs-12">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
           <br>
           <img class="winnerisyou" src="{{ url_for('static', filename='img/winnerisyou.jpg') }}">
           <br><br>
           <p>We hope you enjoyed this demo as much as we enjoyed making it!</p>
-          <br>
-
-          <a href="{{ url_for('example.reset') }}"><button class="btn btn-default btn-primary">Reset the demo!</button></a>
+          <a href="{{ url_for('views.index') }}" class="btn btn-primary">There is no place like home</a>
         </div>
       </div>
     </div>

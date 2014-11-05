@@ -1,105 +1,105 @@
 {% extends "base.html" %}
-    {% block content %}
-    {% if app %}
-    <div class="signup">
-    <img class="steps-img" src="{{ url_for('static', filename='img/step2.png') }}">
-    <h1>Step 2: Get your creds!</h1>
-    <div class="container">
-      <div class="row row-centered">
 
-        <div class="signup-form col-centered col-xs-12">
-        <form role="form" action="{{ url_for('example.index') }}" method="post">
-        <h2>App Name: {{ app.name }}</h2>
-          <p>
-            <label>
-              Client ID
-              <input size="64" class="pokable form-control"type="text" name="client_id" value="{{ app.client_id }}" onClick="this.select();" readonly>
-            </label>
-          </p>
-          <p>
-            <label>
-              Secret Key
-              <input size="64" class="pokable form-control" type="text" name="secret_key" value="{{ app.secret_key }}" onClick="this.select();" readonly>
-            </label>
-          </p>
-          <p>These are important! Better write them down. You can always log back in to Kalasag if you forget. On to the next step.</p>
-          <a href="{{ url_for('example.index') }}"><button class="btn-left btn btn-default btn-primary">Add a User</button></a>
-          </form>
-        </div>
-        <br>
-      </div>
+{% block content %}
+{% if app %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h2>App Name: {{ app.name }}</h2>
+      <p>
+        <label>
+          Client ID
+          <input size="64" class="pokable form-control" type="text" name="client_id" value="{{ app.client_id }}" onClick="this.select();" readonly>
+        </label>
+      </p>
+      <p>
+        <label>
+          Secret Key
+          <input size="64" class="pokable form-control" type="text" name="secret_key" value="{{ app.secret_key }}" onClick="this.select();" readonly>
+        </label>
+      </p>
+      <p>These are important! Better write them down. You can always log back in to Kalasag if you forget.</p>
+      </form>
+      <h3>Integration</h3>
+      <p>Follow the demo to learn how to integrate Kalasag in your apps.</p>
+      <p>
+        <a href="{{ url_for('example.index') }}" class="btn btn-primary">
+          Try Demo
+        </a>
+      </p>
     </div>
-    </div>
-    {% else %}
-    <div class="super-container container-fluid">
-      <div class="row">
-        <div class="main-col col-xs-12">
-          <div class="attengrab">
-            <img src="{{ url_for('static', filename='img/kalasag_logo.png')}}">
-            <h2>To protect and serve your login</h2>
-            <p>Kalasag is two-factor SMS authentication for your apps made easy. <br> Just sign up, plug your app into the API and you're good to go!</p>
-            <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Get Started</button></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="row benefit-row">
-        <h3>How are my users protected?</h3>
-        <div class="benefit col-xs-12 col-sm-4 ">
-        <div class="img-cont">
-          <img src="{{ url_for('static', filename='img/benefit4.png')}}">
-        </div>
-        <h4>Login</h4>
-        <p>Your user logs into your app. How do you know it's not a sketchy hacker?</p>
-        </div>
-        <div class="benefit col-xs-12 col-sm-4 ">
-        <div class="img-cont">
-          <img src="{{ url_for('static', filename='img/benefit5.png')}}">
-        </div>
-        <h4>SMS Verification</h4>
-        <p>Your user receives an SMS with a shortcode.</p>
-        </div>
-        <div class="benefit col-xs-12 col-sm-4 ">
-        <div class="img-cont">
-          <img src="{{ url_for('static', filename='img/benefit6.png')}}">
-        </div>
-        <h4>Success</h4>
-        <p> A form will be shown where the shortcode can be inputted. If it's correct, access to your app continues as normal.</p>
-        </div>
-      </div>
-
-      <div class="row benefit-row-2">
-        <h3>Setup is literally as easy as 1-2-3</h3>
-        <div class="benefit col-xs-12 col-sm-4 ">
-        <div class="img-cont">
-          <img src="{{ url_for('static', filename='img/benefit1.png')}}">
-        </div>
-        <h4>Register</h4>
-        <p>Protecting your app with Kalasag is as easy as writing your app's name in a box.</p>
-        </div>
-        <div class="benefit col-xs-12 col-sm-4 ">
-        <div class="img-cont">
-          <img src="{{ url_for('static', filename='img/benefit2.png')}}">
-        </div>
-        <h4>Add users </h4>
-        <p>Once registered, you get a client ID and a secret key. Put in your user's phone numbers and voilà!</p>
-        </div>
-        <div class="benefit col-xs-12 col-sm-4 ">
-        <div class="img-cont">
-          <img src="{{ url_for('static', filename='img/benefit3.png')}}">
-        </div>
-        <h4>Direct to Kalasag</h4>
-        <p>Just add a sprinkle of code after your login form and let Kalasag do the rest.</p>
-        </div>
-      </div>
-
-      <div class="row cta-row">
+  </div>
+</div>
+{% else %}
+<div class="super-container container-fluid">
+  <div class="row">
+    <div class="main-col col-xs-12">
+      <div class="attengrab">
+        <img src="{{ url_for('static', filename='img/kalasag_logo.png')}}">
+        <h2>To protect and serve your login</h2>
         <p>Kalasag is two-factor SMS authentication for your apps made easy. <br> Just sign up, plug your app into the API and you're good to go!</p>
-        <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn-down btn btn-primary btn-lg">Protect Me</button></a>  
-        <div class="hf-div">
-        <p class="copyright">© Kalasag 2014</p>    
-        </div>
+        <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Get Started</button></a>
       </div>
     </div>
-    {% endif %}
-    {% endblock %}
+  </div>
+
+  <div class="row benefit-row">
+    <h3>How are my users protected?</h3>
+    <div class="benefit col-xs-12 col-sm-4 ">
+    <div class="img-cont">
+      <img src="{{ url_for('static', filename='img/benefit4.png')}}">
+    </div>
+    <h4>Login</h4>
+    <p>Your user logs into your app. How do you know it's not a sketchy hacker?</p>
+    </div>
+    <div class="benefit col-xs-12 col-sm-4 ">
+    <div class="img-cont">
+      <img src="{{ url_for('static', filename='img/benefit5.png')}}">
+    </div>
+    <h4>SMS Verification</h4>
+    <p>Your user receives an SMS with a shortcode.</p>
+    </div>
+    <div class="benefit col-xs-12 col-sm-4 ">
+    <div class="img-cont">
+      <img src="{{ url_for('static', filename='img/benefit6.png')}}">
+    </div>
+    <h4>Success</h4>
+    <p> A form will be shown where the shortcode can be inputted. If it's correct, access to your app continues as normal.</p>
+    </div>
+  </div>
+
+  <div class="row benefit-row-2">
+    <h3>Setup is literally as easy as 1-2-3</h3>
+    <div class="benefit col-xs-12 col-sm-4 ">
+    <div class="img-cont">
+      <img src="{{ url_for('static', filename='img/benefit1.png')}}">
+    </div>
+    <h4>Register</h4>
+    <p>Protecting your app with Kalasag is as easy as writing your app's name in a box.</p>
+    </div>
+    <div class="benefit col-xs-12 col-sm-4 ">
+    <div class="img-cont">
+      <img src="{{ url_for('static', filename='img/benefit2.png')}}">
+    </div>
+    <h4>Add users </h4>
+    <p>Ask your users for their numbers and push it out to our API.</p>
+    </div>
+    <div class="benefit col-xs-12 col-sm-4 ">
+    <div class="img-cont">
+      <img src="{{ url_for('static', filename='img/benefit3.png')}}">
+    </div>
+    <h4>Direct to Kalasag</h4>
+    <p>Just add a sprinkle of code after your login form and let Kalasag do the rest.</p>
+    </div>
+  </div>
+
+  <div class="row cta-row">
+    <p>Kalasag is two-factor SMS authentication for your apps made easy. <br> Just sign up, plug your app into the API and you're good to go!</p>
+    <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn-down btn btn-primary btn-lg">Protect Me</button></a>
+    <div class="hf-div">
+    <p class="copyright">© Kalasag 2014</p>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

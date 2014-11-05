@@ -1,88 +1,86 @@
 {% extends "base.html" %}
 {% block content %}
-    
-    <div class="signup">
-    <div class="container">
-      <div class="row row-centered">
 
-        <div class="signup-form col-centered col-xs-12">
-        {% if not user %}
-        <img class="steps-img" src="{{ url_for('static', filename='img/step3.png') }}">
-          <h1>Step 3: Add a User</h1>
-          <form role="form" name="kform" action="{{ url_for('.add_user') }}" method="post" onsubmit="return validateForm()">
-          <p>
-            <label>
-              Client ID
-              {% if request.form.client_id %}
-              <input class="form-control"size="64" type="text" name="client_id" value="{{request.form.client_id}}" readonly>
-              {% else %}
-              <input class="form-control"size="64" type="text" name="client_id">
-              {% endif %}
-            </label>
-          </p>
-          <p>
-            <label>
-              Secret Key
-              {% if request.form.secret_key %}
-              <input class="form-control"size="64" type="text" name="secret_key" value="{{request.form.secret_key}}" readonly>
-              {% else %}
-              <input class="form-control"size="64" type="text" name="secret_key">
-              {% endif %}
-              
-            </label>
-          </p>
-          <p>
-            <label>
-              User ID
-              <input class="form-control"size="64" type="text" name="user_id">
-            </label>
-          </p>
-          <p>
-            <label>
-              User Name
-              <input class="form-control"size="64" type="text" name="user_name">
-            </label>
-          </p>
-          <p>
-            <label>
-              User Number (make sure it start with 63, i.e. 63926XXXXXXX)
-              <input class="form-control numeric" size="64" type="text" name="user_number">
-            </label>
-          </p>
-          <p class="missing">Please fill in all the fields. It's a demo, man. Help me out.</p>
-          <p>
-            <button class="btn btn-default btn-primary" type="submit">Add User</button>
-          </p>
-          </form>
-          {% else %}
-          <img class="steps-img" src="{{ url_for('static', filename='img/step4.png') }}">
-          <h1>Here's a User. Demo Time!</h1>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>ID</th>
-              <th>Name</th> 
-              <th>Number</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ user.id }}</td>
-              <td>{{ user.name }}</td> 
-              <td>{{ user.number }}</td>
-              </tr>
-            </tbody>
-          </table>
-          <form role="form" action="{{ url_for('.login') }}" method="post">
-            <p>
-              <button class="btn btn-default btn-primary" type="submit">Send a One-Time Password</button>
-            </p>
-          </form>
-          {% endif %}
-        </div>
-      </div>
+<div class="signup">
+<div class="container">
+  <div class="row">
+    {% if not user %}
+    <img class="steps-img" src="{{ url_for('static', filename='img/step3.png') }}">
+    <h1>Add a User</h1>
+    <hr>
+    <div class="col col-md-4 col-md-offset-2">
+      <p>Add users using our API:</p>
+      <pre><code>curl -X POST \
+-d 'name=USER_NAME&number=USER_NUMBER'
+{{ url_for('api_user', client_id=app.client_id, user_id='USER_ID', secret_key=app.secret_key, _external=True) }}
+</code></pre>
+      <p>You can use the form to try it out.</p>
     </div>
+    <div class="col col-md-4">
+      <form role="form" name="kform" action="{{ url_for('.add_user') }}" method="post" onsubmit="return validateForm()">
+      <p>
+        <label>
+          User ID
+          <input class="form-control"size="64" type="text" name="user_id">
+        </label>
+      </p>
+      <p>
+        <label>
+          User Name
+          <input class="form-control"size="64" type="text" name="user_name">
+        </label>
+      </p>
+      <p>
+        <label>
+          User Number (make sure it start with 63, i.e. 63926XXXXXXX)
+          <input class="form-control numeric" size="64" type="text" name="user_number">
+        </label>
+      </p>
+      <p class="missing">Please fill in all the fields. It's a demo, man. Help me out.</p>
+      <p>
+        <button class="btn btn-default btn-primary" type="submit">Add User</button>
+      </p>
+      </form>
     </div>
+    {% else %}
+    <img class="steps-img" src="{{ url_for('static', filename='img/step4.png') }}">
+    <h1>Integrate with your login</h1>
+    <hr>
+    <div class="col col-md-4 col-md-offset-2">
+      <p>After doing your own login magic, send an OTP to your users through the
+      API:</p>
+      <pre><code>curl -X POST \
+{{ url_for('api_otp_request', client_id=app.client_id, user_id='USER_ID', secret_key=app.secret_key, _external=True) }}
+</code></pre>
+      <p>You can use the form to try it out.</p>
+    </div>
+    <div class="col col-md-4">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.number }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <form role="form" action="{{ url_for('.login') }}" method="post">
+        <p>
+          <button class="btn btn-default btn-primary" type="submit">Send a One-Time Password</button>
+        </p>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</div>
+</div>
 {% endblock %}
 {% block extrajs %}
 <script type="text/javascript">
@@ -92,11 +90,11 @@
     var z = document.forms["kform"]["user_number"].value;
     if ((x == null || x == "") ||
         (y == null || y == "") ||
-        (z == null || z == "")) 
+        (z == null || z == ""))
     {
         $('.missing').show();
         return false;
     }
-} 
+}
 </script>
 {% endblock %}

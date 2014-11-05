@@ -1,71 +1,82 @@
 import requests
-from flask import (abort, Blueprint, flash, redirect, render_template, request,
-                   session, url_for)
+from flask import (abort, Blueprint, current_app, flash, redirect,
+                   render_template, request, session, url_for)
 
 from . import db
-from .util import rand_str
-from flask import current_app
 
 blueprint = Blueprint("example", __name__, static_folder='static')
 
 
-@blueprint.route("/", methods=["GET","POST"])
+@blueprint.route("/", methods=["GET", "POST"])
 def index():
-  if request.method == "POST":
-    current_app.logger.debug(request.form)
-  user = None
+  if "app_client_id" in session:
+    app = db.hgetall("apps:" + session["app_client_id"])
+  else:
+    return redirect(url_for("views.index"))
 
-  client_id = session.get("example_client_id")
   user_id = session.get("example_user_id")
-  secret_key = session.get("example_secret_key")
 
-  if client_id and user_id and secret_key:
+  if app and user_id:
     user = db.hgetall("apps:{}:users:{}".format(
-      client_id,
+      app["client_id"],
       user_id,
     ))
+  else:
+    user = None
 
   return render_template(
     "example/index.html",
+    app=app,
     user=user,
   )
 
 
 @blueprint.route("/add_user", methods=["POST"])
 def add_user():
+  if "app_client_id" in session:
+    app = db.hgetall("apps:" + session["app_client_id"])
+  else:
+    return redirect(url_for("views.index"))
+
   if request.method == "POST":
     res = requests.put(
       url_for(
         "api_user",
-        client_id=request.form["client_id"],
+        client_id=app["client_id"],
         user_id=request.form["user_id"],
         _external=True,
       ),
       data=dict(
-        secret_key=request.form["secret_key"],
+        secret_key=app["secret_key"],
         name=request.form["user_name"],
         number=request.form["user_number"],
       ),
     )
     if res.status_code != requests.codes.ok:
       abort(500)
-    session["example_client_id"] = request.form["client_id"]
-    session["example_secret_key"] = request.form["secret_key"]
     session["example_user_id"] = request.form["user_id"]
   return redirect(url_for(".index"))
 
 
 @blueprint.route("/login", methods=["POST"])
 def login():
+  if "app_client_id" in session:
+    app = db.hgetall("apps:" + session["app_client_id"])
+  else:
+    return redirect(url_for("views.index"))
+
+  if "example_user_id" not in session:
+    return redirect(url_for(".index"))
+
   res = requests.post(
     url_for(
       "api_otp_request",
-      client_id=session["example_client_id"],
+      client_id=app["client_id"],
       user_id=session["example_user_id"],
       _external=True,
     ),
     data=dict(
-      secret_key=session["example_secret_key"],
+      secret_key=app["secret_key"],
     ),
   )
   if res.status_code != requests.codes.ok:
@@ -75,30 +86,35 @@ def login():
 
 @blueprint.route("/validate", methods=["GET", "POST"])
 def validate():
+  if "app_client_id" in session:
+    app = db.hgetall("apps:" + session["app_client_id"])
+  else:
+    return redirect(url_for("views.index"))
+
+  if "example_user_id" not in session:
+    return redirect(url_for(".index"))
+
   if request.method == "POST":
     current_app.logger.debug("SENDING: " + request.form["code"])
     res = requests.post(
       url_for(
         "api_otp_validate",
-        client_id=session["example_client_id"],
+        client_id=app["client_id"],
         user_id=session["example_user_id"],
         _external=True,
       ),
       data=dict(
         code=request.form["code"],
-        secret_key=session["example_secret_key"],
+        secret_key=app["secret_key"],
       ),
     )
     if res.status_code != requests.codes.ok:
       abort(500)
     if res.json()["valid"]:
+      session.pop('example_user_id')
       return render_template("example/success.html")
     else:
       current_app.logger.debug(res.json())
       flash("Login failed")
-  return render_template("example/validate.html")
+  return render_template("example/validate.html", app=app)
 
-@blueprint.route("/reset", methods=["GET"])
-def reset():
-  session.clear()
-  return redirect(url_for('views.index'))

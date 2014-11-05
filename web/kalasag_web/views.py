@@ -28,3 +28,8 @@ def signup():
     return redirect(url_for(".index"))
   return render_template("signup.html")
 
+
+@blueprint.route("/logout", methods=["GET"])
+def logout():
+  session.clear()
+  return redirect(url_for('.index'))
