@@ -33,14 +33,21 @@
 </div>
 {% else %}
 <div class="super-container container-fluid">
-  <div class="row">
-    <div class="main-col col-xs-12">
+  <div class="main-col row">
+    <div class="container">
+    <div class="col-xs-12 col-md-6">
       <div class="attengrab">
         <img src="{{ url_for('static', filename='img/kalasag_logo.png')}}">
         <h2>To protect and serve your login</h2>
-        <p>Kalasag is two-factor SMS authentication for your apps made easy. <br> Just sign up, plug your app into the API and you're good to go!</p>
+        <p>Kalasag is two-factor SMS authentication for your apps made easy. Just sign up, plug your app into the API and you're good to go!</p>
         <a href="{{ url_for('.signup') }}"><button type="button" class="k-btn btn btn-primary btn-lg">Get Started</button></a>
       </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="vid-cont">
+      <iframe class="vidframe" width="560" height="315" src="//www.youtube.com/embed/UtFhiQ_r-R0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
     </div>
   </div>
 

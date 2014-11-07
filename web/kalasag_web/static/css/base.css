@@ -2,6 +2,40 @@ body {
   font-family: "Open Sans";
 }
 
+@media (max-width: 9999px) {
+  .vid-cont {
+    text-align: left;
+  }
+  .k-btn {
+    margin-top: 50px;
+    margin-bottom: 75px;
+  }
+
+  .vidframe {
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 991px) {
+  .vid-cont {
+    text-align: center;
+    margin-bottom: 75px;
+  }
+
+  .vidframe {
+    margin-top: 0;
+  }
+
+  .k-btn {
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+}
+
+.vidframe {
+  max-width: 100%;
+}
+
 .doc-img {
   max-width: 64px;
   max-height: 64px;
@@ -136,8 +170,6 @@ body {
 }
 
 .k-btn {
-  margin-top: 50px;
-  margin-bottom: 75px;
   font-family: "Oswald";
   font-weight: 400;
   text-transform: uppercase;
